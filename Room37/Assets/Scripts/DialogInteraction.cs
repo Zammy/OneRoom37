@@ -2,22 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogInteraction : MonoBehaviour 
+public class DialogInteraction : BaseInteraction 
 {   
-    [SerializeField]
-    PlayerControls playerControls;
-
     [SerializeField]
     Clues clues;
 
-    List<GameObject> playersInfront = new List<GameObject>();
-
-    void Awake()
-    {
-        playerControls.ButtonPressed += this.OnButtonPressed;
-    }
-
-    void OnButtonPressed(InputButton button)
+    protected override void OnButtonPressed(InputButton button)
     {
         if (button != InputButton.Interact)
         {
@@ -35,25 +25,5 @@ public class DialogInteraction : MonoBehaviour
         int matches = otherClues.Matches(this.clues);
 
         UIManager.Instance.ShowInfoFeedback(this.transform.position, playersInfront[0].transform.position, matches);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag != "Player" && other.tag != "Character")
-        {
-            return;
-        }
-
-        playersInfront.Add(other.gameObject);
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag != "Player" && other.tag != "Character")
-        {
-            return;
-        }
-
-        playersInfront.Remove(other.gameObject);
     }
 }

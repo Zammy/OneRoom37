@@ -16,5 +16,4 @@ public class Clues : MonoBehaviour
         matches += clues.Means && this.Means ? 1 : 0;
         return matches;
     }
-
 }

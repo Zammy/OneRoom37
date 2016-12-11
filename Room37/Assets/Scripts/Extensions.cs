@@ -76,6 +76,11 @@ public static class Extensions
         return UnityEngine.Random.Range(0, list.Count-1);
     }
 
+    public static T xRandomItem<T>(this IList<T> list)
+    {
+        return list[list.xRandomIndex()];
+    }
+
     public static Vector2 xWorldToCanvas(this Canvas canvas, Vector3 worldPos, Camera camera = null)
     {
          if (camera == null)
