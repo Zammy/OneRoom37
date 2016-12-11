@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SceneSetup : MonoBehaviour {
 
@@ -26,11 +27,15 @@ public class SceneSetup : MonoBehaviour {
     [SerializeField]
     private string sceneStartsIn;
 
+    private List<PlayerInfo> playerInfo = new List<PlayerInfo>();
+    private List<CharacterType> charTypes = new List<CharacterType>( (CharacterType[]) Enum.GetValues(typeof(CharacterType)) );
+
     void TogglePlayer(int playerNumber) {
         activePlayers[playerNumber] = !(activePlayers[playerNumber]);
         //Debug.Log("Player " + (playerNumber + 1) + " active: " + activePlayers[playerNumber].ToString());
         if (activePlayers[playerNumber] == true) {
             playerStatusIndicators[playerNumber].enabled = true;
+            AddPlayerInfo(playerNumber);
             if (countdownActive == false) {
                 countdownTimeRemaining = countdownLength;
                 countdownActive = true;
@@ -65,7 +70,30 @@ public class SceneSetup : MonoBehaviour {
                 countdownTimeRemaining -= Time.deltaTime;
                 counterText.text = sceneStartsIn + (int)countdownTimeRemaining + "...";
             } else {
-                SceneManager.LoadScene("MurderScene1");
+                playerInfo.xShuffle();
+                playerInfo[0].ChracterType = CharacterType.Detective;
+                charTypes.Remove(CharacterType.Detective);
+                charTypes.xShuffle();
+                for (int i = 1; i < playerInfo.Count; i++ ) {
+                    playerInfo[i].ChracterType = charTypes[i - 1];
+                }
+                PlayerInfo.PlayerInfos = playerInfo.ToArray();
+                SceneManager.LoadScene("Test");
+            }
+        }
+    }
+
+    void AddPlayerInfo(int playerIndex) {
+        PlayerInfo newPlayer = new PlayerInfo();
+        newPlayer.PlayerIndex = playerIndex;
+        playerInfo.Add(newPlayer);
+    }
+
+    void RemovePlayerInfo(int playerIndex) {
+        for (int i = 0; i < playerInfo.Count; i++ ) {
+            if (playerInfo[i].PlayerIndex == playerIndex) {
+                playerInfo.RemoveAt(i);
+                break;
             }
         }
     }
