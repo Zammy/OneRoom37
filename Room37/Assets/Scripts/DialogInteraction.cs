@@ -7,6 +7,9 @@ public class DialogInteraction : MonoBehaviour
     [SerializeField]
     PlayerControls playerControls;
 
+    [SerializeField]
+    Clues clues;
+
     List<GameObject> playersInfront = new List<GameObject>();
 
     void Awake()
@@ -26,12 +29,17 @@ public class DialogInteraction : MonoBehaviour
             return;
         }
 
-        UIManager.Instance.ShowInfoFeedback(this.transform.position, playersInfront[0].transform.position, 3);
+        var interactingWith = playersInfront[0];
+        var otherClues = interactingWith.GetComponentInChildren<Clues>();
+
+        int matches = otherClues.Matches(this.clues);
+
+        UIManager.Instance.ShowInfoFeedback(this.transform.position, playersInfront[0].transform.position, matches);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag != "Player")
+        if (other.tag != "Player" && other.tag != "Character")
         {
             return;
         }
@@ -41,7 +49,7 @@ public class DialogInteraction : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag != "Player")
+        if (other.tag != "Player" && other.tag != "Character")
         {
             return;
         }

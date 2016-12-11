@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4437492694225642}
+  - component: {fileID: 114792156712164668}
   m_Layer: 0
   m_Name: Clues
   m_TagString: Untagged
@@ -223,6 +224,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControls: {fileID: 114036208446313526}
+  clues: {fileID: 114792156712164668}
+--- !u!114 &114792156712164668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662531296616962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65daade229f0b48f69a3a35273aa6dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Motive: 0
+  Opportunity: 1
+  Means: 0
 --- !u!212 &212829347752883616
 SpriteRenderer:
   m_ObjectHideFlags: 1
