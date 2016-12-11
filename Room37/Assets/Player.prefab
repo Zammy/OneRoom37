@@ -30,6 +30,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1086841270949664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4985813738225536}
+  - component: {fileID: 58566871639183362}
+  - component: {fileID: 114622735505466230}
+  m_Layer: 0
+  m_Name: DialogInteraction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1604822091520600
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,18 +63,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1915748401237598
+--- !u!1 &1662531296616962
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4644164830919770}
-  - component: {fileID: 58708837756006792}
-  - component: {fileID: 114230284085999744}
+  - component: {fileID: 4437492694225642}
   m_Layer: 0
-  m_Name: DialogInteraction
+  m_Name: Clues
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +89,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4371023477509610}
-  - {fileID: 4644164830919770}
+  - {fileID: 4985813738225536}
+  - {fileID: 4437492694225642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -91,12 +107,25 @@ Transform:
   m_Father: {fileID: 4097101114636308}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4644164830919770
+--- !u!4 &4437492694225642
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1915748401237598}
+  m_GameObject: {fileID: 1662531296616962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4097101114636308}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4985813738225536
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086841270949664}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -117,7 +146,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 70
   m_LinearDrag: 20
-  m_AngularDrag: 0.05
+  m_AngularDrag: 20
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -138,12 +167,12 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 20
---- !u!58 &58708837756006792
+--- !u!58 &58566871639183362
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1915748401237598}
+  m_GameObject: {fileID: 1086841270949664}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -166,17 +195,6 @@ MonoBehaviour:
   player: {fileID: 114592144954047896}
   playerNumber: 1
   analogueInput: {x: 0, y: 0}
---- !u!114 &114230284085999744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1915748401237598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 345833ec6c1db4f38ad8db1306839979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114592144954047896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,6 +211,18 @@ MonoBehaviour:
   minWalkingSpeed: 250
   maxWalkingSpeed: 350
   inputMinimum: 0.5
+--- !u!114 &114622735505466230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086841270949664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345833ec6c1db4f38ad8db1306839979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControls: {fileID: 114036208446313526}
 --- !u!212 &212829347752883616
 SpriteRenderer:
   m_ObjectHideFlags: 1

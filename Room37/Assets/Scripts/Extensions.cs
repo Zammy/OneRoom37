@@ -75,4 +75,18 @@ public static class Extensions
     {
         return UnityEngine.Random.Range(0, list.Count-1);
     }
+
+    public static Vector2 WorldToCanvas(this Canvas canvas, Vector3 worldPos, Camera camera = null)
+    {
+         if (camera == null)
+         {
+             camera = Camera.main;
+         }
+ 
+        var viewportPosition = camera.WorldToViewportPoint(worldPos);
+        var canvasRect = canvas.GetComponent<RectTransform>();
+ 
+        return new Vector2((viewportPosition.x * canvasRect.sizeDelta.x) - (canvasRect.sizeDelta.x * 0.5f),
+                            (viewportPosition.y * canvasRect.sizeDelta.y) - (canvasRect.sizeDelta.y * 0.5f));
+     }
  }
