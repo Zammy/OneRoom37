@@ -4,32 +4,33 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    [SerializeField]
     private Transform visual;
+    [SerializeField]
     private Rigidbody2D rigidBody;
 
-    public float minWalkingSpeed;
-    public float maxWalkingSpeed;
+    [SerializeField]
+    private float minWalkingSpeed;
+    [SerializeField]
+    private float maxWalkingSpeed;
+    [SerializeField]
+    private float inputMinimum = 0.5f;
 
     public float WalkingSpeedRange { get; private set; }
 
-    void Awake() {
-        visual = transform.Find("Visual").transform;
-        rigidBody = transform.Find("Visual").GetComponent<Rigidbody2D>();
-
+    void Awake()
+    {
         WalkingSpeedRange = maxWalkingSpeed - minWalkingSpeed;
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void MoveRequest(Vector2 analogueInput) {
+    public void MoveRequest(Vector2 analogueInput) 
+    {
+        bool isMoving = analogueInput.magnitude > inputMinimum;
+        if (!isMoving)
+        {
+            rigidBody.velocity = Vector3.zero;
+            return;
+        }
         float rotAngle = Mathf.Atan2(analogueInput.y, analogueInput.x) * Mathf.Rad2Deg;
         rigidBody.MoveRotation(rotAngle);
         rigidBody.velocity = analogueInput.normalized * (minWalkingSpeed + WalkingSpeedRange * analogueInput.magnitude);
