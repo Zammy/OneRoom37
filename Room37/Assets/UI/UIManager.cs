@@ -41,11 +41,11 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void ShowDetectiveInfo(Vector3 character1Pos, Vector3 character2Pos, Dossier dossier)
+    public void ShowDetectiveInfo(Vector3 character1Pos, Dossier dossier)
     {
         Vector3 worldSpaceWidgetPos;
-        worldSpaceWidgetPos.x = (character1Pos.x + character2Pos.x)/2 + 35;
-        worldSpaceWidgetPos.y = Mathf.Max(character1Pos.y, character2Pos.y) + 75;
+        worldSpaceWidgetPos.x = character1Pos.x + 50;
+        worldSpaceWidgetPos.y = character1Pos.y + 55;
         worldSpaceWidgetPos.z = 0;
 
         Vector2 viewPortPoint = canvas.xWorldToCanvas(worldSpaceWidgetPos);

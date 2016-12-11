@@ -87,7 +87,7 @@ public class DetectiveInteraction : BaseInteraction
         Dossier dossier = GetDossierForCharacter(character);
         dossier.GetInfoFromClues(clues);
 
-        UIManager.Instance.ShowDetectiveInfo(this.transform.position, character.transform.position, dossier);
+        UIManager.Instance.ShowDetectiveInfo(character.transform.position, dossier);
     }
 
     Dossier GetDossierForCharacter(GameObject character)

@@ -5,7 +5,7 @@ using System;
 
 public enum InputButton
 {
-    Interact, Motive, Opportunity, Means
+    Interact
 }
 
 public class PlayerControls : MonoBehaviour 
@@ -21,10 +21,7 @@ public class PlayerControls : MonoBehaviour
     Dictionary<InputButton, string> BUTTONS_TO_AXIS;
     Dictionary<InputButton, bool> buttonPressedState = new Dictionary<InputButton, bool>()
     {
-        {InputButton.Interact, false},
-        {InputButton.Motive, false},
-        {InputButton.Opportunity, false},
-        {InputButton.Means, false},
+        {InputButton.Interact, false}
     };
 
     public event Action<InputButton> ButtonPressed;
