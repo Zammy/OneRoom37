@@ -69,14 +69,15 @@ public class SceneSetup : MonoBehaviour {
         if (countdownActive) {
             if (countdownTimeRemaining > 0) {
                 countdownTimeRemaining -= Time.deltaTime;
-                counterText.text = sceneStartsIn + (int)countdownTimeRemaining + "...";
+                counterText.text = sceneStartsIn + Mathf.Ceil(countdownTimeRemaining) + "...";
             } else {
                 playerInfo.xShuffle();
                 playerInfo[0].ChracterType = CharacterType.Detective;
                 charTypes.Remove(CharacterType.Detective);
                 charTypes.xShuffle();
                 for (int i = 1; i < playerInfo.Count; i++ ) {
-                    playerInfo[i].ChracterType = charTypes[i - 1];
+                    playerInfo[i].ChracterType = charTypes[0];
+                    charTypes.RemoveAt(0);
                 }
                 PlayerInfo.PlayerInfos = playerInfo.ToArray();
                 SceneManager.LoadScene("Test");
