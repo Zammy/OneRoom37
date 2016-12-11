@@ -44,8 +44,8 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        analogueInput.x = Input.GetAxis("Horizontal");
-        analogueInput.y = Input.GetAxis("Vertical");
+        analogueInput.x = Input.GetAxis("Horizontal" + playerNumber);
+        analogueInput.y = Input.GetAxis("Vertical" + playerNumber);
         player.MoveRequest(analogueInput);
 
 
