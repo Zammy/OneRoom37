@@ -12,9 +12,9 @@ TextureImporter:
     21300010: spritesheet_characters_5
     21300012: spritesheet_characters_6
     21300014: spritesheet_characters_7
-    21300016: spritesheet_characters_8
+    21300016: brown_interacting
     21300018: spritesheet_characters_9
-    21300020: spritesheet_characters_10
+    21300020: hulk_standing
     21300022: spritesheet_characters_11
     21300024: spritesheet_characters_12
     21300026: spritesheet_characters_13
@@ -25,7 +25,7 @@ TextureImporter:
     21300036: spritesheet_characters_18
     21300038: spritesheet_characters_19
     21300040: spritesheet_characters_20
-    21300042: spritesheet_characters_21
+    21300042: brown_standing
     21300044: spritesheet_characters_22
     21300046: spritesheet_characters_23
     21300048: spritesheet_characters_24
@@ -35,7 +35,7 @@ TextureImporter:
     21300056: spritesheet_characters_28
     21300058: spritesheet_characters_29
     21300060: spritesheet_characters_30
-    21300062: spritesheet_characters_31
+    21300062: kristoff_interacting
     21300064: spritesheet_characters_32
     21300066: spritesheet_characters_33
     21300068: spritesheet_characters_34
@@ -44,10 +44,10 @@ TextureImporter:
     21300074: spritesheet_characters_37
     21300076: spritesheet_characters_38
     21300078: spritesheet_characters_39
-    21300080: spritesheet_characters_40
-    21300082: spritesheet_characters_41
-    21300084: blue_man
-    21300086: spritesheet_characters_43
+    21300080: ninja_standing
+    21300082: mike_interacting
+    21300084: mike_standing
+    21300086: kristoff_standing
     21300088: spritesheet_characters_44
     21300090: spritesheet_characters_45
     21300092: spritesheet_characters_46
@@ -56,7 +56,7 @@ TextureImporter:
     21300098: spritesheet_characters_49
     21300100: spritesheet_characters_50
     21300102: spritesheet_characters_51
-    21300104: player1
+    21300104: watchdog_standing
     21300106: spritesheet_characters_53
   serializedVersion: 4
   mipmaps:
@@ -236,7 +236,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_8
+      name: brown_interacting
       rect:
         serializedVersion: 2
         x: 388
@@ -262,7 +262,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_10
+      name: hulk_standing
       rect:
         serializedVersion: 2
         x: 460
@@ -405,7 +405,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_21
+      name: brown_standing
       rect:
         serializedVersion: 2
         x: 459
@@ -535,7 +535,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_31
+      name: kristoff_interacting
       rect:
         serializedVersion: 2
         x: 422
@@ -652,7 +652,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_40
+      name: ninja_standing
       rect:
         serializedVersion: 2
         x: 353
@@ -665,7 +665,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_41
+      name: mike_interacting
       rect:
         serializedVersion: 2
         x: 390
@@ -678,7 +678,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: blue_man
+      name: mike_standing
       rect:
         serializedVersion: 2
         x: 426
@@ -691,7 +691,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_43
+      name: kristoff_standing
       rect:
         serializedVersion: 2
         x: 460
@@ -808,7 +808,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player1
+      name: watchdog_standing
       rect:
         serializedVersion: 2
         x: 390
