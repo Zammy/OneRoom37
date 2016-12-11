@@ -344,8 +344,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1472eee4ef096f449bb433268f2a91bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countdownLength: 3
+  countdownTimeRemaining: 0
   activePlayers: 00000000
-  countdownLength: 4
   playerStatusIndicators:
   - {fileID: 100023256}
   - {fileID: 1348946251}
