@@ -81,6 +81,13 @@ public static class Extensions
         return list[list.xRandomIndex()];
     }
 
+    public static T xPop<T>(this IList<T> list)
+    {
+        var t = list[0];
+        list.RemoveAt(0);
+        return t;
+    }
+
     public static Vector2 xWorldToCanvas(this Canvas canvas, Vector3 worldPos, Camera camera = null)
     {
          if (camera == null)

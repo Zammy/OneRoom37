@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject detective;
 
-    Queue<bool[]> clueList = new Queue<bool[]>();
+    List<bool[]> clueList = new List<bool[]>();
 
     void Start () 
     {
@@ -69,38 +69,43 @@ public class GameManager : MonoBehaviour
         playerClues.xShuffle();
         npcClues.xShuffle();
 
+        if (playerClues.Count == 1)
+        {
+            clueList.xShuffle();
+        }
+
         foreach(var playerClue in playerClues)
         {
-            bool[] clues = clueList.Dequeue();
+            bool[] clues = clueList.xPop();
             playerClue.SetFromBoolArray(clues);
         }
 
         foreach(var npcClue in npcClues)
         {
-            bool[] clues = clueList.Dequeue();
+            bool[] clues = clueList.xPop();
             npcClue.SetFromBoolArray(clues);
         }
 	}
 
     void CreateClueAllocationList() 
     {
-        clueList.Enqueue(new bool[] { true, true, true });
+        clueList.Add(new bool[] { true, true, true });
 
         List<bool[]> verySuspect = new List<bool[]>();
         verySuspect.Add(new bool[] { true, true, false});
         verySuspect.Add(new bool[] { true, false, true});
         verySuspect.Add(new bool[] { false, true, true});
         verySuspect.xShuffle();
-        clueList.Enqueue(verySuspect[0]);
-        clueList.Enqueue(verySuspect[1]);
-        clueList.Enqueue(verySuspect[2]);
+        clueList.Add(verySuspect[0]);
+        clueList.Add(verySuspect[1]);
+        clueList.Add(verySuspect[2]);
 
         List<bool[]> lessSuspect = new List<bool[]>();
         lessSuspect.Add(new bool[] { true, false, false });
         lessSuspect.Add(new bool[] { false, true, false });
         lessSuspect.Add(new bool[] { false, false, true });
-        clueList.Enqueue(lessSuspect[0]);
-        clueList.Enqueue(lessSuspect[1]);
-        clueList.Enqueue(lessSuspect[2]);
+        clueList.Add(lessSuspect[0]);
+        clueList.Add(lessSuspect[1]);
+        clueList.Add(lessSuspect[2]);
     }
 }
