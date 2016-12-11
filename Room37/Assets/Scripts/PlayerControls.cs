@@ -13,8 +13,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private PlayerMovement player;
 
-    [SerializeField]
-    private int playerNumber;
+    public int PlayerNumber;
 
     [SerializeField]
     private Vector2 analogueInput = Vector3.zero;

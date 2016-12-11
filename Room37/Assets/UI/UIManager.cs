@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
         worldSpaceWidgetPos.y = Mathf.Max(character1Pos.y, character2Pos.y) + 75;
         worldSpaceWidgetPos.z = 0;
 
-        Vector2 viewPortPoint = canvas.WorldToCanvas(worldSpaceWidgetPos);
+        Vector2 viewPortPoint = canvas.xWorldToCanvas(worldSpaceWidgetPos);
 
         var infoFeedbackGo = (GameObject) Instantiate(infoFeedbackWidgetPrefab);
         infoFeedbackGo.transform.SetParent(this.transform);

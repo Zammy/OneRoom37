@@ -56,7 +56,7 @@ public static class Extensions
             list[n] = value;
         }
         return list;
-     }
+    }
 
     public static IList<T> xExchange<T>(this IList<T> list, int a, int b)
     {
@@ -76,7 +76,7 @@ public static class Extensions
         return UnityEngine.Random.Range(0, list.Count-1);
     }
 
-    public static Vector2 WorldToCanvas(this Canvas canvas, Vector3 worldPos, Camera camera = null)
+    public static Vector2 xWorldToCanvas(this Canvas canvas, Vector3 worldPos, Camera camera = null)
     {
          if (camera == null)
          {
