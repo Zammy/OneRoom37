@@ -8,17 +8,24 @@ public class GameManager : MonoBehaviour
     Transform[] startingPositions;
 
     [SerializeField]
+    Transform[] npcPositions;
+
+    [SerializeField]
     GameObject playerPrefab;
+
+    [SerializeField]
+    GameObject npcPrefab;
 
     [SerializeField]
     GameObject detective;
 
-    List<bool[]> clueList = new List<bool[]>();
-    List<bool[]> remainingCluesList = new List<bool[]>();
+    Queue<bool[]> clueList = new Queue<bool[]>();
 
     void Start () 
     {
         CreateClueAllocationList();
+
+        var playerClues = new List<Clues>();
 
         for (int i = 0; i < PlayerInfo.PlayerInfos.Length; i++)
         {
@@ -39,44 +46,61 @@ public class GameManager : MonoBehaviour
             {
                 var visual = playerGo.GetComponentInChildren<PlayerVisual>();
                 visual.SetCharacter(playerInfo.ChracterType);
+                var clues = playerGo.GetComponentInChildren<Clues>();
+                playerClues.Add(clues);
             }
 
             var playerControls = playerGo.GetComponent<PlayerControls>();
             playerControls.PlayerNumber = playerInfo.PlayerIndex;
-
-            if (playerInfo.ChracterType != CharacterType.Detective) 
-            {
-                var clueSetup = playerGo.GetComponentInChildren<Clues>();
-                int clueListIndex = Random.Range(0, clueList.Count);
-                clueSetup.Motive = clueList[clueListIndex][0];
-                clueSetup.Means = clueList[clueListIndex][1];
-                clueSetup.Opportunity = clueList[clueListIndex][2];
-                clueList.RemoveAt(clueListIndex);
-            }
         }
 
-        remainingCluesList.Add(clueList[0]);
+        var npcClues = new List<Clues>();
+        var npcPoses = new Stack<Transform>(npcPositions);
+
+        for (int i = PlayerInfo.PlayerInfos.Length; i < 7; i++)
+        {
+            var npcGo = (GameObject) Instantiate(npcPrefab);
+            npcGo.transform.localScale = Vector3.one;
+            npcGo.transform.position = npcPoses.Pop().position;
+            var clues = npcGo.GetComponent<Clues>();
+            npcClues.Add(clues);
+        }
+
+        playerClues.xShuffle();
+        npcClues.xShuffle();
+
+        foreach(var playerClue in playerClues)
+        {
+            bool[] clues = clueList.Dequeue();
+            playerClue.SetFromBoolArray(clues);
+        }
+
+        foreach(var npcClue in npcClues)
+        {
+            bool[] clues = clueList.Dequeue();
+            npcClue.SetFromBoolArray(clues);
+        }
 	}
 
     void CreateClueAllocationList() 
     {
-        clueList.Add(new bool[] { true, true, true });
+        clueList.Enqueue(new bool[] { true, true, true });
 
         List<bool[]> verySuspect = new List<bool[]>();
         verySuspect.Add(new bool[] { true, true, false});
         verySuspect.Add(new bool[] { true, false, true});
         verySuspect.Add(new bool[] { false, true, true});
         verySuspect.xShuffle();
-        clueList.Add(verySuspect[0]);
-        clueList.Add(verySuspect[1]);
-        clueList.Add(verySuspect[2]);
+        clueList.Enqueue(verySuspect[0]);
+        clueList.Enqueue(verySuspect[1]);
+        clueList.Enqueue(verySuspect[2]);
 
         List<bool[]> lessSuspect = new List<bool[]>();
         lessSuspect.Add(new bool[] { true, false, false });
         lessSuspect.Add(new bool[] { false, true, false });
         lessSuspect.Add(new bool[] { false, false, true });
-        remainingCluesList.Add(lessSuspect[0]);
-        remainingCluesList.Add(lessSuspect[1]);
-        remainingCluesList.Add(lessSuspect[2]);
+        clueList.Enqueue(lessSuspect[0]);
+        clueList.Enqueue(lessSuspect[1]);
+        clueList.Enqueue(lessSuspect[2]);
     }
 }

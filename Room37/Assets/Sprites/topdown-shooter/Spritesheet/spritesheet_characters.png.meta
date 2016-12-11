@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 79933160546204efdb8d416855142273
-timeCreated: 1481390298
+timeCreated: 1481486922
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -23,7 +23,7 @@ TextureImporter:
     21300032: spritesheet_characters_16
     21300034: spritesheet_characters_17
     21300036: spritesheet_characters_18
-    21300038: spritesheet_characters_19
+    21300038: jenny_standing
     21300040: spritesheet_characters_20
     21300042: brown_standing
     21300044: spritesheet_characters_22
@@ -369,7 +369,7 @@ TextureImporter:
       name: spritesheet_characters_18
       rect:
         serializedVersion: 2
-        x: 347
+        x: 349
         y: 169
         width: 38
         height: 43
@@ -379,7 +379,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_19
+      name: jenny_standing
       rect:
         serializedVersion: 2
         x: 386

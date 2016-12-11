@@ -16,4 +16,11 @@ public class Clues : MonoBehaviour
         matches += clues.Means && this.Means ? 1 : 0;
         return matches;
     }
+
+    public void SetFromBoolArray(bool[] data)
+    {
+        Motive = data[0];
+        Opportunity = data[1];
+        Means = data[2];
+    }
 }
