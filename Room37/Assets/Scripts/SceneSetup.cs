@@ -42,6 +42,7 @@ public class SceneSetup : MonoBehaviour {
             }
         } else {
             playerStatusIndicators[playerNumber].enabled = false;
+            RemovePlayerInfo(playerNumber);
             countdownActive = false;
             counterText.text = waitingForOnePlayer;
             foreach (bool remainingPlayer in activePlayers) {
