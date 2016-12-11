@@ -52,7 +52,7 @@ public class PlayerControls : MonoBehaviour
         {
             InputButton inputButton = kvp.Key;
             string axisName = kvp.Value;
-            bool isPressed = Input.GetAxisRaw(axisName) > 0;
+            bool isPressed = Input.GetAxisRaw(axisName + (PlayerNumber + 1)) > 0;
             bool wasPressed = buttonPressedState[inputButton];
             if (isPressed && !wasPressed)
             {
