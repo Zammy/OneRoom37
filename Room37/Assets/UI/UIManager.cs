@@ -15,6 +15,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject confirmDialogPrefab;
 
+    [SerializeField]
+    GameObject gameEndPrefab;
+
+
     Canvas canvas;
 
     void Awake()
@@ -84,9 +88,13 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ShowGameEnded(int wonPlayerIndex)
+    public void ShowGameEnded(int wonPlayerIndex, WinState winState)
     {
-        Debug.LogFormat("Player won by escape {0}", wonPlayerIndex);
-        //TODO: show end screen dialog that offers joystick 0 to go to select screen or just select screen after timout
+        var gameEndGo = Instantiate(gameEndPrefab, transform.position, Quaternion.identity);
+        gameEndGo.transform.SetParent(this.transform);
+        gameEndGo.transform.localScale = Vector3.one;
+        var gameEnd = gameEndGo.GetComponent<GameEnd>();
+        gameEnd.PlayerIndex = wonPlayerIndex;
+        gameEnd.WinState = winState;
     }
 }

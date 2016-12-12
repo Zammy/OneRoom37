@@ -40,7 +40,7 @@ public class RunAwayInteraction : BaseInteraction
 
                 if (clue.IsMurderer())
                 {
-                    UIManager.Instance.ShowGameEnded(playerControls.PlayerNumber);
+                    UIManager.Instance.ShowGameEnded(playerControls.PlayerNumber, WinState.MurdererEscaped);
                 }
                 else
                 {
