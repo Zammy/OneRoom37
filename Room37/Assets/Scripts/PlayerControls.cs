@@ -8,19 +8,26 @@ public enum InputButton
     Interact
 }
 
+public enum InputCommand
+{
+    InterfaceInteractLeft,
+    InterfaceInteractRight
+}
+
 public class PlayerControls : MonoBehaviour 
 {
     [SerializeField]
     private PlayerMovement player;
 
-    public int PlayerNumber;
-
     [SerializeField]
     private Vector2 analogueInput = Vector3.zero;
 
-    public event Action<InputButton> ButtonPressed;
+    public int PlayerNumber;
 
-    readonly KeyCode[] keyCodes = new KeyCode[]
+    public event Action<InputButton> ButtonPressed;
+    public event Action<InputCommand> InputCommandStream;
+
+    readonly KeyCode[] button0 = new KeyCode[]
     {
         KeyCode.Joystick1Button0,
         KeyCode.Joystick2Button0,
@@ -34,11 +41,16 @@ public class PlayerControls : MonoBehaviour
         analogueInput.y = Input.GetAxis("Vertical" + (PlayerNumber + 1));
         player.MoveRequest(analogueInput);
 
-        bool isInteract = Input.GetKeyDown(keyCodes[PlayerNumber]);   
+        bool isInteract = Input.GetKeyDown(button0[PlayerNumber]);
 
         if (isInteract)
         {
             RaiseButtonPressed(InputButton.Interact);
+        }
+
+        if (analogueInput.x > 0.5f)
+        {
+            
         }
     }
 
@@ -47,6 +59,14 @@ public class PlayerControls : MonoBehaviour
         if (this.ButtonPressed != null)
         {
             this.ButtonPressed(inputButton);
+        }
+    }
+
+    void RaiseButtonPressed(InputCommand commandStream)
+    {
+        if (this.InputCommandStream != null)
+        {
+            this.InputCommandStream(commandStream);
         }
     }
 }
