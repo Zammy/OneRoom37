@@ -50,7 +50,12 @@ public class PlayerControls : MonoBehaviour
 
         if (analogueInput.x > 0.5f)
         {
-            
+            RaiseButtonPressed(InputCommand.InterfaceInteractRight);
+        }
+
+        if (analogueInput.x < -0.5f)
+        {
+            RaiseButtonPressed(InputCommand.InterfaceInteractLeft);
         }
     }
 

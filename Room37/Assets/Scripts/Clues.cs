@@ -23,4 +23,9 @@ public class Clues : MonoBehaviour
         Opportunity = data[1];
         Means = data[2];
     }
+
+    public bool IsMurderer()
+    {
+        return Motive && Opportunity && Means;
+    }
 }

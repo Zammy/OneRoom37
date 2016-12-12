@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogInteraction : BaseInteraction 
+public class DialogInteraction : BasePlayerInteraction 
 {   
     [SerializeField]
     Clues clues;
@@ -13,6 +13,6 @@ public class DialogInteraction : BaseInteraction
 
         int matches = otherClues.Matches(this.clues);
 
-        UIManager.Instance.ShowInfoFeedback(this.transform.position, playersInfront[0].transform.position, matches);
+        UIManager.Instance.ShowInfoFeedback(this.transform.position, interactableObjects[0].transform.position, matches);
     }
 }

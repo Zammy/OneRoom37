@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject detectiveInfoWidgetPrefab;
 
+    [SerializeField]
+    GameObject confirmDialogPrefab;
+
     Canvas canvas;
 
     void Awake()
@@ -59,5 +62,31 @@ public class UIManager : MonoBehaviour
         infoRectTrans.anchoredPosition = viewPortPoint - (infoRectTrans.sizeDelta / 2f);
  
         detectiveInfoWidget.ShowMatches(dossier);
+    }
+
+    public ConfirmationDialog CreateDialogOnPos(Vector3 pos)
+    {
+        Vector2 viewPortPoint = canvas.xWorldToCanvas(pos);
+
+        var confirmDialogGo = (GameObject) Instantiate(confirmDialogPrefab);
+        confirmDialogGo.transform.SetParent(this.transform);
+        confirmDialogGo.transform.localScale = Vector3.one;
+        var confirmDialog = confirmDialogGo.GetComponent<ConfirmationDialog>();
+        var confirmDialogRectTrans = (RectTransform)confirmDialogGo.transform ;
+        confirmDialogRectTrans.anchoredPosition = viewPortPoint;// - (confirmDialogRectTrans.sizeDelta / 2f);
+        return confirmDialog;
+    }
+
+    public void ShowInfoMessage(string text)
+    {
+        Debug.Log(text);
+        //TODO: add some text at the at top of the game
+
+    }
+
+    public void ShowGameEnded(int wonPlayerIndex)
+    {
+        Debug.LogFormat("Player won by escape {0}", wonPlayerIndex);
+        //TODO: show end screen dialog that offers joystick 0 to go to select screen or just select screen after timout
     }
 }

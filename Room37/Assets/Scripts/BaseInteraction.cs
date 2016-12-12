@@ -1,117 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class BaseInteraction : MonoBehaviour 
+public abstract class BaseInteraction : MonoBehaviour 
 {
-    [SerializeField]
-    PlayerControls playerControls;
-
-    [SerializeField]
-    PlayerMovement playerMovement;
-
-    [SerializeField]
-    PlayerVisual playerVisual;
-
-    public bool IsInteracting
-    {
-        get
-        {
-            return _isInteracting;
-        }    
-        set
-        {
-            _isInteracting = value;
-            playerVisual.IsInteracting = value;
-            playerMovement.IsInteracting = value;
-        }
-    }
-
-    protected List<GameObject> playersInfront = new List<GameObject>();
+    protected List<GameObject> interactableObjects = new List<GameObject>();
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (this.IsObjectInteractable(other))
+        if (!this.IsObjectInteractable(other))
         {
             return;
         }
-
-        playersInfront.Add(other.gameObject);
+        AddInteractable(other.gameObject);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (this.IsObjectInteractable(other))
+        if (!this.IsObjectInteractable(other))
         {
             return;
         }
-
-        playersInfront.Remove(other.gameObject);
+        RemoveInteractable(other.gameObject);
     }
 
-    void Awake()
+    protected abstract bool IsObjectInteractable(Collider2D other);
+
+    protected virtual void AddInteractable(GameObject other)
     {
-        playerControls.ButtonPressed += this.OnButtonPressed;
-    }
+        interactableObjects.Add(other.gameObject);
 
-    protected bool IsObjectInteractable(Collider2D other)
+    }
+    protected virtual void RemoveInteractable(GameObject other)
     {
-        return other.tag != "Player" && other.tag != "Character";
+        interactableObjects.Remove(other.gameObject);
     }
 
-    protected virtual void OnButtonPressed(InputButton button) 
-    {
-        if (button != InputButton.Interact)
-        {
-            return;
-        }
-
-        if (playersInfront.Count == 0)
-        {
-            return;
-        }
-
-        if (this.IsInteracting)
-        {
-            return;
-        }
-
-        var other = playersInfront[0];
-        var otherBaseInteraction = other.GetComponentInChildren<BaseInteraction>();
-        if (otherBaseInteraction && otherBaseInteraction.IsInteracting)
-        {
-            return;
-        }
-
-        this.transform.xLookAt(other.transform.position);
-        other.transform.xLookAt(this.transform.position);
-        this.IsInteracting = true;
-        if (otherBaseInteraction)
-        {
-            otherBaseInteraction.IsInteracting = true;
-        }
-
-        AudioManager.Instance.PlayTalkSound();
-
-        InteractWithNPC(other);
-
-        DOTween.Sequence()
-           .AppendInterval(2f)
-           .AppendCallback(() => 
-           {
-                this.IsInteracting = false;
-                if (otherBaseInteraction)
-                {
-                    otherBaseInteraction.IsInteracting = false;
-                }           
-            })
-           .Play();
-    }
-
-    protected virtual void InteractWithNPC(GameObject interectWith)
-    {
-    }
-
-    bool _isInteracting = false;
 }

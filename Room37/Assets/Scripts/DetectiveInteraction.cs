@@ -66,7 +66,7 @@ public class Dossier
     }
 }
 
-public class DetectiveInteraction : BaseInteraction
+public class DetectiveInteraction : BasePlayerInteraction
 {
     Dictionary<GameObject, Dossier> dossiers = new Dictionary<GameObject,Dossier>();
 
