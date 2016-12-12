@@ -87,6 +87,8 @@ public class BaseInteraction : MonoBehaviour
             otherBaseInteraction.IsInteracting = true;
         }
 
+        AudioManager.Instance.PlayTalkSound();
+
         InteractWithNPC(other);
 
         DOTween.Sequence()
