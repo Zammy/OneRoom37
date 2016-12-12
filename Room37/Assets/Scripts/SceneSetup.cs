@@ -58,10 +58,18 @@ public class SceneSetup : MonoBehaviour {
         countdownActive = false;
         counterText.text = waitingForOnePlayer;
     }
-	
+
+    readonly KeyCode[] keyCodes = new KeyCode[]
+    {
+        KeyCode.Joystick1Button0,
+        KeyCode.Joystick2Button0,
+        KeyCode.Joystick3Button0,
+        KeyCode.Joystick4Button0,
+    };
+
 	void Update () {
-        for (int i = 0; i < 4; i++) {
-            if (Input.GetButtonDown("Submit" + (i + 1))) {
+        for (int i = 0; i < keyCodes.Length; i++) {
+            if (Input.GetKeyDown(keyCodes[i])) {
                 TogglePlayer(i);
             }
         }

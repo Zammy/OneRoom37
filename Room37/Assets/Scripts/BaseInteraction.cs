@@ -32,7 +32,7 @@ public class BaseInteraction : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag != "Player" && other.tag != "Character")
+        if (this.IsObjectInteractable(other))
         {
             return;
         }
@@ -42,7 +42,7 @@ public class BaseInteraction : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag != "Player" && other.tag != "Character")
+        if (this.IsObjectInteractable(other))
         {
             return;
         }
@@ -53,6 +53,11 @@ public class BaseInteraction : MonoBehaviour
     void Awake()
     {
         playerControls.ButtonPressed += this.OnButtonPressed;
+    }
+
+    protected bool IsObjectInteractable(Collider2D other)
+    {
+        return other.tag != "Player" && other.tag != "Character";
     }
 
     protected virtual void OnButtonPressed(InputButton button) 
