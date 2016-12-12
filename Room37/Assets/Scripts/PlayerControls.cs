@@ -18,44 +18,27 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private Vector2 analogueInput = Vector3.zero;
 
-    Dictionary<InputButton, string> BUTTONS_TO_AXIS;
-    Dictionary<InputButton, bool> buttonPressedState = new Dictionary<InputButton, bool>()
-    {
-        {InputButton.Interact, false}
-    };
-
     public event Action<InputButton> ButtonPressed;
 
-    void Awake()
+    readonly KeyCode[] keyCodes = new KeyCode[]
     {
-        BUTTONS_TO_AXIS = new Dictionary<InputButton, string>();
-        var inputButtons = (InputButton[]) Enum.GetValues(typeof(InputButton));
-        foreach (var inputButton in inputButtons)
-        {
-            BUTTONS_TO_AXIS[inputButton] = inputButton.ToString();
-        }
-    }
+        KeyCode.Joystick1Button0,
+        KeyCode.Joystick2Button0,
+        KeyCode.Joystick3Button0,
+        KeyCode.Joystick4Button0,
+    };
 
-
-    // Update is called once per frame
     void Update() 
     {
         analogueInput.x = Input.GetAxis("Horizontal" + (PlayerNumber + 1));
         analogueInput.y = Input.GetAxis("Vertical" + (PlayerNumber + 1));
         player.MoveRequest(analogueInput);
 
+        bool isInteract = Input.GetKeyDown(keyCodes[PlayerNumber]);   
 
-        foreach(var kvp in BUTTONS_TO_AXIS)
+        if (isInteract)
         {
-            InputButton inputButton = kvp.Key;
-            string axisName = kvp.Value;
-            bool isPressed = Input.GetAxisRaw(axisName + (PlayerNumber + 1)) > 0;
-            bool wasPressed = buttonPressedState[inputButton];
-            if (isPressed && !wasPressed)
-            {
-                RaiseButtonPressed(inputButton);
-            }
-            buttonPressedState[inputButton] = isPressed;
+            RaiseButtonPressed(InputButton.Interact);
         }
     }
 
