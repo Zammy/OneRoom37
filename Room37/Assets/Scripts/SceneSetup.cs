@@ -67,9 +67,19 @@ public class SceneSetup : MonoBehaviour {
         KeyCode.Joystick4Button0,
     };
 
+    readonly KeyCode[] cheatKeyCodes = new KeyCode[]
+    {
+        KeyCode.Alpha1,
+        KeyCode.Alpha2,
+        KeyCode.Alpha3,
+        KeyCode.Alpha4,
+    };
+
 	void Update () {
         for (int i = 0; i < keyCodes.Length; i++) {
-            if (Input.GetKeyDown(keyCodes[i])) {
+            if (Input.GetKeyDown(keyCodes[i]) ||
+                Input.GetKeyDown(cheatKeyCodes[i]))
+            {
                 TogglePlayer(i);
             }
         }
