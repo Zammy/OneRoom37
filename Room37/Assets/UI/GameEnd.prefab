@@ -109,9 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 114798109995446494}
   gameEndTexts:
-  - 
-  - 
-  - Player won by escape {0}
+  - Detective player {0}  won by finding the murderer
+  - Detective player {0}  lost by framing innocent
+  - 'Player {0} won by escape '
 --- !u!114 &114578059805256540
 MonoBehaviour:
   m_ObjectHideFlags: 1

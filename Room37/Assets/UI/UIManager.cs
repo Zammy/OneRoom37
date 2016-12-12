@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour 
 {
@@ -17,6 +19,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     GameObject gameEndPrefab;
+
+    [SerializeField]
+    Text systemMessage;
 
 
     Canvas canvas;
@@ -83,18 +88,35 @@ public class UIManager : MonoBehaviour
 
     public void ShowInfoMessage(string text)
     {
-        Debug.Log(text);
-        //TODO: add some text at the at top of the game
+        if (_infoMessageSeq != null)
+        {
+            _infoMessageSeq.Kill(false);
+        }
 
+        var baseGo = systemMessage.transform.parent.gameObject;
+        baseGo.SetActive(true);
+        _infoMessageSeq = DOTween.Sequence();
+        _infoMessageSeq.AppendInterval(2f);
+        _infoMessageSeq.AppendCallback(() =>
+        {
+            baseGo.SetActive(false);
+            _infoMessageSeq = null;
+        });
+
+        systemMessage.text = text;
+
+        Debug.Log(text);
     }
 
-    public void ShowGameEnded(int wonPlayerIndex, WinState winState)
+    public void ShowGameEnded(int playerIndex, WinState winState)
     {
         var gameEndGo = Instantiate(gameEndPrefab, transform.position, Quaternion.identity);
         gameEndGo.transform.SetParent(this.transform);
         gameEndGo.transform.localScale = Vector3.one;
         var gameEnd = gameEndGo.GetComponent<GameEnd>();
-        gameEnd.PlayerIndex = wonPlayerIndex;
+        gameEnd.PlayerIndex = playerIndex;
         gameEnd.WinState = winState;
     }
+
+    Sequence _infoMessageSeq;
 }

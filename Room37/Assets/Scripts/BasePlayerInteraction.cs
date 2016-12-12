@@ -6,13 +6,13 @@ using DG.Tweening;
 public class BasePlayerInteraction : BaseInteraction 
 {
     [SerializeField]
-    PlayerControls playerControls;
+    protected PlayerControls playerControls;
 
     [SerializeField]
-    PlayerMovement playerMovement;
+    protected  PlayerMovement playerMovement;
 
     [SerializeField]
-    PlayerVisual playerVisual;
+    protected  PlayerVisual playerVisual;
 
     public bool IsInteracting
     {

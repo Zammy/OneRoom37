@@ -19,7 +19,8 @@ public class Dossier
         ClueStates = new DetectiveClueState[] { DetectiveClueState.Unknown, DetectiveClueState.Unknown, DetectiveClueState.Unknown };
     }
 
-    public void GetInfoFromClues(Clues clue)
+    //returns if chosing character as murderer
+    public bool GetInfoFromClues(Clues clue)
     {
         var unknownIndexes = new List<int>();
         for (int i = 0; i < ClueStates.Length; i++)
@@ -32,7 +33,7 @@ public class Dossier
 
         if (unknownIndexes.Count == 0)
         {
-            return;
+            return true;
         }
 
         int unknownSlotIndex = unknownIndexes.xRandomIndex();
@@ -63,6 +64,8 @@ public class Dossier
         {
             ClueStates[unknownIndexes[0]] = DetectiveClueState.Locked;
         }
+
+        return false;
     }
 }
 
@@ -74,9 +77,16 @@ public class DetectiveInteraction : BasePlayerInteraction
     {
         var clues = interectWith.GetComponentInChildren<Clues>();
         Dossier dossier = GetDossierForCharacter(interectWith);
-        dossier.GetInfoFromClues(clues);
-
-        UIManager.Instance.ShowDetectiveInfo(interectWith.transform.position, dossier);
+        bool gameEnd = dossier.GetInfoFromClues(clues);
+        if (gameEnd)
+        {
+            WinState state = clues.IsMurderer() ? WinState.DetectiveFoundMurderer : WinState.DetectiveDidNotFoundMurderer;
+            UIManager.Instance.ShowGameEnded(this.playerControls.PlayerNumber, state);
+        }
+        else
+        {
+            UIManager.Instance.ShowDetectiveInfo(interectWith.transform.position, dossier);
+        }
     }
 
     Dossier GetDossierForCharacter(GameObject character)
