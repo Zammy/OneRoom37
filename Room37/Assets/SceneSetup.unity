@@ -132,7 +132,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 100023254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 476058664}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -386,13 +386,13 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "The Detective has a cool hat!\r\n\nThe other people in the room are Suspects!\nThey
     have some combination of the means, motive and opportunity to have murdered the
-    victim.\n\nThe Killer, however, is the only Suspect to have all three!\r\n---------------------------------------------------------------------------------------------------------------------------------------------------\nAs
+    victim.\n\nThe Killer, however, is the only Suspect to have all three!\r\n\n---------------------------------------------------------------------------------------------------------------------------------------------------\n\nAs
     the Detective, [INTERACT] with Suspects to question them on the topics of means,
-    motive and opportunity.\n\nAs a Suspect, [INTERACT] with Suspects to see how similar
-    they are to you on each topic.\nUse this information to help the Detective!\r\n\nAs
-    the Killer, [INTERACT] with door to escape before the Detective catches you.\nNo
+    motive and opportunity!\n\nAs a Suspect, [INTERACT] with Suspects to see how similar
+    they are to you on each topic!\nUse this information to help the Detective!\r\n\nAs
+    the Killer, [INTERACT] with the door to escape before the Detective catches you!\nNo
     preferential treatment for killers: you'll have to figure out who you are just
-    like everyone else!\n\r---------------------------------------------------------------------------------------------------------------------------------------------------\n(Remember
+    like everyone else!\n\n\r---------------------------------------------------------------------------------------------------------------------------------------------------\n\n(Remember
     that people are scared and touchy! No one will reveal information on more than
     two topics.)"
 --- !u!222 &741333351
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1348946249}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1583822031}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
