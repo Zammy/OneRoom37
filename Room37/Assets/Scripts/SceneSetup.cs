@@ -98,7 +98,7 @@ public class SceneSetup : MonoBehaviour {
                     charTypes.RemoveAt(0);
                 }
                 PlayerInfo.PlayerInfos = playerInfo.ToArray();
-                SceneManager.LoadScene("Test");
+                SceneManager.LoadScene("MurderScene");
             }
         }
     }
