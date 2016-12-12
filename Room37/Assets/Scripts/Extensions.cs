@@ -101,4 +101,19 @@ public static class Extensions
         return new Vector2((viewportPosition.x * canvasRect.sizeDelta.x) - (canvasRect.sizeDelta.x * 0.5f),
                             (viewportPosition.y * canvasRect.sizeDelta.y) - (canvasRect.sizeDelta.y * 0.5f));
      }
+
+    public static float xAngleSigned(this Vector3 v1, Vector3 v2, Vector3 rotationAxis)
+    {
+        return Mathf.Atan2(
+            Vector3.Dot(rotationAxis, Vector3.Cross(v1, v2)),
+            Vector3.Dot(v1, v2)) * Mathf.Rad2Deg;
+    }
+
+    public static void xLookAt(this Transform trans, Vector3 point)
+    {
+        Vector3 fromPosToPoint = point - trans.position;
+        Vector3 dir = fromPosToPoint.normalized;
+        float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        trans.rotation = Quaternion.Euler(0f, 0f, rot_z);
+    }
  }

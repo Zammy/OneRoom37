@@ -70,24 +70,13 @@ public class DetectiveInteraction : BaseInteraction
 {
     Dictionary<GameObject, Dossier> dossiers = new Dictionary<GameObject,Dossier>();
 
-    protected override void OnButtonPressed(InputButton button)
+    protected override void InteractWithNPC(GameObject interectWith)
     {
-        if (button != InputButton.Interact)
-        {
-            return;
-        }
-
-        if (playersInfront.Count == 0)
-        {
-            return;
-        }
-
-        var character = playersInfront[0];
-        var clues = character.GetComponentInChildren<Clues>();
-        Dossier dossier = GetDossierForCharacter(character);
+        var clues = interectWith.GetComponentInChildren<Clues>();
+        Dossier dossier = GetDossierForCharacter(interectWith);
         dossier.GetInfoFromClues(clues);
 
-        UIManager.Instance.ShowDetectiveInfo(character.transform.position, dossier);
+        UIManager.Instance.ShowDetectiveInfo(interectWith.transform.position, dossier);
     }
 
     Dossier GetDossierForCharacter(GameObject character)

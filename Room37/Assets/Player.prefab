@@ -86,7 +86,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035170275562144}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114592144954047896}
-  playerNumber: 1
+  PlayerNumber: 1
   analogueInput: {x: 0, y: 0}
 --- !u!114 &114592144954047896
 MonoBehaviour:
@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControls: {fileID: 114036208446313526}
+  playerMovement: {fileID: 114592144954047896}
+  playerVisual: {fileID: 114812503236418152}
   clues: {fileID: 114792156712164668}
 --- !u!114 &114792156712164668
 MonoBehaviour:
@@ -257,6 +259,11 @@ MonoBehaviour:
   - {fileID: 21300084, guid: 79933160546204efdb8d416855142273, type: 3}
   - {fileID: 21300080, guid: 79933160546204efdb8d416855142273, type: 3}
   - {fileID: 21300086, guid: 79933160546204efdb8d416855142273, type: 3}
+  characterSpritesInteracting:
+  - {fileID: 21300102, guid: 79933160546204efdb8d416855142273, type: 3}
+  - {fileID: 21300082, guid: 79933160546204efdb8d416855142273, type: 3}
+  - {fileID: 21300014, guid: 79933160546204efdb8d416855142273, type: 3}
+  - {fileID: 21300062, guid: 79933160546204efdb8d416855142273, type: 3}
 --- !u!212 &212829347752883616
 SpriteRenderer:
   m_ObjectHideFlags: 1

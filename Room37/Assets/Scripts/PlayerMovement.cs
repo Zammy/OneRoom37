@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour {
 
     public float WalkingSpeedRange { get; private set; }
 
+    public bool IsInteracting
+    {
+        get;
+        set;
+    }
+
     void Awake()
     {
         WalkingSpeedRange = maxWalkingSpeed - minWalkingSpeed;
@@ -25,6 +31,10 @@ public class PlayerMovement : MonoBehaviour {
 
     public void MoveRequest(Vector2 analogueInput) 
     {
+        if (IsInteracting)
+        {
+            return;
+        }
         bool isMoving = analogueInput.magnitude > inputMinimum;
         if (!isMoving)
         {

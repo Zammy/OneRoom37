@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 79933160546204efdb8d416855142273
-timeCreated: 1481486922
+timeCreated: 1481547237
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -11,7 +11,7 @@ TextureImporter:
     21300008: spritesheet_characters_4
     21300010: spritesheet_characters_5
     21300012: spritesheet_characters_6
-    21300014: spritesheet_characters_7
+    21300014: ninja_interacting
     21300016: brown_interacting
     21300018: spritesheet_characters_9
     21300020: hulk_standing
@@ -55,7 +55,7 @@ TextureImporter:
     21300096: spritesheet_characters_48
     21300098: spritesheet_characters_49
     21300100: spritesheet_characters_50
-    21300102: spritesheet_characters_51
+    21300102: watchdog_interacting
     21300104: watchdog_standing
     21300106: spritesheet_characters_53
   serializedVersion: 4
@@ -223,7 +223,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_7
+      name: ninja_interacting
       rect:
         serializedVersion: 2
         x: 349
@@ -795,7 +795,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_characters_51
+      name: watchdog_interacting
       rect:
         serializedVersion: 2
         x: 352
