@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class UIManager : MonoBehaviour 
 {
@@ -116,6 +117,13 @@ public class UIManager : MonoBehaviour
         var gameEnd = gameEndGo.GetComponent<GameEnd>();
         gameEnd.PlayerIndex = playerIndex;
         gameEnd.WinState = winState;
+
+        var players = GameObject.FindObjectsOfType<PlayerControls>();
+        Array.ForEach(players, p =>
+        {
+            p.gameObject.SetActive(false);
+        });
+
     }
 
     Sequence _infoMessageSeq;
