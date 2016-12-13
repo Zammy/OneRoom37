@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
-
-    [SerializeField]
-    private Transform visual;
+public class PlayerMovement : MonoBehaviour 
+{
     [SerializeField]
     private Rigidbody2D rigidBody;
+
+    [SerializeField]
+    PlayerControls playerControls;
 
     [SerializeField]
     private float minWalkingSpeed;
@@ -27,9 +28,15 @@ public class PlayerMovement : MonoBehaviour {
     void Awake()
     {
         WalkingSpeedRange = maxWalkingSpeed - minWalkingSpeed;
+        playerControls.RawAnalogInput += OnRawAnalogInput;
     }
 
-    public void MoveRequest(Vector2 analogueInput) 
+    void OnDestroy()
+    {
+        playerControls.RawAnalogInput -= OnRawAnalogInput;
+    }
+
+    void OnRawAnalogInput(Vector2 analogueInput) 
     {
         if (IsInteracting)
         {

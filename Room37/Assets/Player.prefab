@@ -194,9 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78127fb684060954988dbec14e1e7675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114592144954047896}
-  PlayerNumber: 1
   analogueInput: {x: 0, y: 0}
+  PlayerNumber: 1
+  ControllerIndex: 0
+  ControllerType: 0
 --- !u!114 &114592144954047896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09a8e1e2675ac04f9d0e40862829516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visual: {fileID: 4371023477509610}
   rigidBody: {fileID: 50887914885735234}
+  playerControls: {fileID: 114036208446313526}
   minWalkingSpeed: 250
   maxWalkingSpeed: 350
   inputMinimum: 0.5

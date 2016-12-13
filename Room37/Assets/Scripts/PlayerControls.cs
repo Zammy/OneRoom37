@@ -17,17 +17,17 @@ public enum InputCommand
 public class PlayerControls : MonoBehaviour 
 {
     [SerializeField]
-    private PlayerMovement player;
-
-    [SerializeField]
     private Vector2 analogueInput = Vector3.zero;
 
     public int PlayerNumber;
+    public int ControllerIndex;
+    public ControllerType ControllerType;
 
+    public event Action<Vector2> RawAnalogInput;
     public event Action<InputButton> ButtonPressed;
     public event Action<InputCommand> InputCommandStream;
 
-    readonly KeyCode[] button0 = new KeyCode[]
+    readonly KeyCode[] gamepadButton0 = new KeyCode[]
     {
         KeyCode.Joystick1Button0,
         KeyCode.Joystick2Button0,
@@ -35,13 +35,36 @@ public class PlayerControls : MonoBehaviour
         KeyCode.Joystick4Button0,
     };
 
+    readonly KeyCode[] keyboardButton0 = new KeyCode[]
+    {
+        KeyCode.Space,
+        KeyCode.Return
+    };
+
     void Update() 
     {
-        analogueInput.x = Input.GetAxis("Horizontal" + (PlayerNumber + 1));
-        analogueInput.y = Input.GetAxis("Vertical" + (PlayerNumber + 1));
-        player.MoveRequest(analogueInput);
+        if (ControllerType == ControllerType.Gamepad)
+        {
+            analogueInput.x = Input.GetAxis("Horizontal" + (ControllerIndex + 1));
+            analogueInput.y = Input.GetAxis("Vertical" + (ControllerIndex + 1));
+        }
+        else
+        {
+            analogueInput.x = Input.GetAxis("Horizontal");
+            analogueInput.y = Input.GetAxis("Vertical");
+        }
+        RaiseRawAnalogInput();
 
-        bool isInteract = Input.GetKeyDown(button0[PlayerNumber]);
+        bool isInteract = false;
+        if (ControllerType == ControllerType.Gamepad)
+        {
+            isInteract = Input.GetKeyDown(gamepadButton0[ControllerIndex]);
+        }
+        else
+        {
+            isInteract = Input.GetKeyDown(keyboardButton0[0]);
+            isInteract = isInteract || Input.GetKeyDown(keyboardButton0[1]);
+        }
 
         if (isInteract)
         {
@@ -72,6 +95,14 @@ public class PlayerControls : MonoBehaviour
         if (this.InputCommandStream != null)
         {
             this.InputCommandStream(commandStream);
+        }
+    }
+
+    void RaiseRawAnalogInput()
+    {
+        if (this.RawAnalogInput != null)
+        {
+            this.RawAnalogInput(this.analogueInput);
         }
     }
 }

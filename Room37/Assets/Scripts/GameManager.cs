@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
 
             var playerControls = playerGo.GetComponent<PlayerControls>();
             playerControls.PlayerNumber = playerInfo.PlayerIndex;
+            playerControls.ControllerIndex = playerInfo.ControllerIndex;
+            playerControls.ControllerType = playerInfo.ControllerType;
         }
 
         var npcClues = new List<Clues>();
