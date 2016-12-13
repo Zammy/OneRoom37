@@ -40,7 +40,7 @@ public class ConfirmationDialog : MonoBehaviour
                 }
                 case DialogType.RunAway:
                 {
-                    title.text = "I am Murderer?";
+                    title.text = "Flee the scene?";
                     break;
                 }
                 default:
