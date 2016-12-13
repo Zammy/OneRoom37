@@ -80,8 +80,17 @@ public class DetectiveInteraction : BasePlayerInteraction
         bool gameEnd = dossier.GetInfoFromClues(clues);
         if (gameEnd)
         {
-            WinState state = clues.IsMurderer() ? WinState.DetectiveFoundMurderer : WinState.DetectiveDidNotFoundMurderer;
-            UIManager.Instance.ShowGameEnded(this.playerControls.PlayerNumber, state);
+            var dialog = UIManager.Instance.CreateDialogOnPos(this.transform.position);
+            dialog.Type = DialogType.IsMurderer;
+            dialog.PlayerControls = playerControls;
+            dialog.Show(yes =>
+            {
+                if (yes)
+                {
+                    WinState state = clues.IsMurderer() ? WinState.DetectiveFoundMurderer : WinState.DetectiveDidNotFoundMurderer;
+                    UIManager.Instance.ShowGameEnded(this.playerControls.PlayerNumber, state);
+                }
+            });
         }
         else
         {
